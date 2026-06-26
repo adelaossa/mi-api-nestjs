@@ -2,7 +2,10 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+import { Categoria } from '../../categorias/entities/categoria.entity';
 
 @Entity('productos')
 export class Producto {
@@ -34,4 +37,17 @@ export class Producto {
     default: true,
   })
   activo: boolean;
+
+    @ManyToOne(
+    () => Categoria,
+    categoria => categoria.productos,
+    {
+      nullable: false,
+      eager: false,
+    },
+  )
+  @JoinColumn({
+    name: 'categoria_id',
+  })
+  categoria: Categoria;
 }

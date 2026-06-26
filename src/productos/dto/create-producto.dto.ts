@@ -4,6 +4,7 @@ import {
   IsOptional,
   IsBoolean,
   Min,
+  IsInt,
 } from 'class-validator';
 
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
@@ -45,4 +46,11 @@ export class CreateProductoDto {
   @IsOptional()
   @IsBoolean()
   activo?: boolean;
+
+  @ApiProperty({
+    example: 1,
+    description: 'ID de la categoría',
+  })
+  @IsInt()
+  categoriaId: number;
 }
